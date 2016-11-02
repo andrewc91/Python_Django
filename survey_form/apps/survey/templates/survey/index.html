@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Survey Assignment</title>
+    </head>
+    <body>
+        
+        <form action="/create" method="post">
+            {% csrf_token %}
+            Your Name: <input type="text" name="name" placeholder="Name">
+            Dojo Location: <select name="location" id="location">
+                <option value='Seattle'>Seattle</option>
+                <option value='San Jose'>San Jose</option>
+                <option value='Dallas'>Dallas</option>
+                <option value='Chicago'>Chicago</option>
+            </select>
+            
+            Favorite Language: <select name='language' id="language">
+                <option value='Python'>Python</option>
+                <option value='MEAN'>MEAN</option>
+                <option value='Ruby'>Ruby on Rails</option>
+                <option value='C#'>C#</option>
+                <option value='IOS'>IOS</option>
+            </select>
+            
+            <p>Comment (optional):</p>
+            <textarea name='comment'></textarea>
+            <input id="button" type="submit" name="submit" value="Submit">
+        </form>
+    </body>
+</html>
