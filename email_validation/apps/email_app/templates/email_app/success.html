@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success Page!</title>
+  </head>
+  <body>
+    <h2>Email Addresses Entered:</h2>
+        {% for element in data %}
+          <li>{{element.email}}</li>
+        {% endfor %}
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Validation Assignment</title>
+  </head>
+  <body>
+    {% if messages %}
+      {% for message in messages %}
+        <li>{{message}}</li>
+      {% endfor %}
+    {% endif %}
+
+    <form action="/process" method="post">
+      {% csrf_token %}
+      <input type="text" name="email">
+      <input type="submit" value="SUBMIT">
+    </form>
+  </body>
+</html>
