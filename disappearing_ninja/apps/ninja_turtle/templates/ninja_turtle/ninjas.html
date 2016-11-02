@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Disappearing Ninja</title>
+    </head>
+    <body>
+        <h1>NINJAS!</h1>
+        {% load staticfiles %}
+        
+        {% if ninja_color == 'purple' %}
+            <img src="{% static 'ninja_turtle/images/donatello.jpg' %}">
+        {% elif ninja_color == 'blue' %}
+            <img src="{% static 'ninja_turtle/images/leonardo.jpg' %}">
+        {% elif ninja_color == 'orange' %}
+            <img src="{% static 'ninja_turtle/images/michelangelo.jpg' %}">
+        {%elif ninja_color == 'red' %}
+            <img src="{% static 'ninja_turtle/images/raphael.jpg' %}">
+        {% else %}
+            <img src="{% static 'ninja_turtle/images/notapril.jpg' %}">
+        {% endif %}
+    </body>
+</html>
