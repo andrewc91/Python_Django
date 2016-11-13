@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    </script>
+    <title>Courses Assignment</title>
+  <head>
+  <body>
+    <div>
+      <h3>Add a new course</h3>
+      <form class="ui form" action="{% url 'course:process' %}" method="post">
+        {% csrf_token %}
+        Name: <input type="text" name="name" placeholder="Name Here"><br><br>
+        Description: <textarea name="description" rows="4" cols="40"></textarea>
+        <input class="ui basic button" type="submit" value="Add"><br><br>
+      </form>
+
+      <form class="ui form" action="{% url 'course:users_courses' %}" method="post">
+        {% csrf_token %}
+        <input class="ui basic button" type="submit" value="Enroll">
+      </form>
+
+      <h3>Courses</h3>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for course in courses %}
+          <tr>
+            <td>{{course.course_name}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.created_at | date:"M d Y g:iA"}}</td>
+            <td><a href="{% url 'course:delete' course.id %}">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
