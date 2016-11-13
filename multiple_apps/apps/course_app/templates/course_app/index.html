@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Courses Assignment</title>
+  <head>
+  <body>
+    <h3>Add a new course</h3>
+    <form class="" action="{% url 'course:process' %}" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="name" placeholder="Name Here"><br><br>
+      Description: <textarea name="description" rows="4" cols="40"></textarea>
+      <input type="submit" value="Add">
+    </form>
+
+    <div id="wrapper">
+      {% for data in courses %}
+      <p>{{data.course_name}}</p>
+      <p>{{data.description}}</p>
+      <p>{{data.created_at}}</p>
+      <a href="./delete/{{data.id}}">Remove</a>
+      {% endfor %}
+  </body>
+</html>

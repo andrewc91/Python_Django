@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Courses Assignment</title>
+  <head>
+  <body>
+    <h2>Are you sure you want to delete the following course?</h2>
+    <p>Name: {{data.course_name}}</p>
+    <p>Description: {{data.description}}</p>
+
+    <a href="{% url 'course:index' %}" id="no">No</a>
+    <a href="{% url 'course:destroy' data.id %}" id="yes">Yes! I want to delete this!</a>
+  </body>
+</html>

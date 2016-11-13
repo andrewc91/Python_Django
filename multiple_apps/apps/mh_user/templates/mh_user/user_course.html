@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Course</title>
+  </head>
+  <body>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'user:usercourse' %}" method='post'>
+      {% csrf_token %}
+      <select name="User">
+          <option>User</option>
+          {% for user in users %}
+              <option value='{{user.id}}'>{{user.first_name}} {{user.last_name}}</option>
+          {% endfor %}
+      </select>
+      <select name="Course">
+        <option>Course</option>
+        {% for course in courses %}
+          <option value="{{course.id}}">{{course.course_name}}</option>
+        {% endfor %}
+        <input type="submit" value='Add User to Course'>
+    </form>
+    {% for course in courses %}
+      <p>{{course.course_name}}</p>
+      <p>{{course.description}}</p>
+    {% endfor %}
+
+    <p><a href="{% url 'course:index' %}"><button>Return Home</button></a></p>
+  </body>
+</html>
