@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login and Registration</title>
     <meta charset="utf-8">
+    <title>Login and Registration</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login_app/css/style.css' %}" charset="utf-8">
   </head>
   <body>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
-    <h1>Registration</h1>
-    <form class="" action="{% url 'create' %}" method="post">
-      {% csrf_token %}
-      <input type="text" name="first_name" placeholder="First Name">
-      <input type="text" name="last_name" placeholder ="Last Name">
-      <input type="text" name="email" placeholder ="Email">
-      <input type="password" name="password" placeholder="Password">
-      <input type="password" name="confirm" placeholder ="Confirm Password">
-      <input type="submit" value="Register">
-    </form>
+    <h1>Welcome to Login and Registration</h1>
 
-    {% if messages %}
-      {% for message in messages %}
-        <li>{{message}}</li>
-      {% endfor %}
-    {% endif %}
+    <div class="container">
+      <h2>Registration</h2>
 
-    <h1>Login</h1>
-    <form class="" action="{% url 'login' %}" method="post">
-      {% csrf_token %}
-      <input type="text" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
-      <input type="submit" value="Login">
-    </form>
+      {% if messages %}
+        {% for message in messages %}
+          {% if "register" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <form class="form-horizontal" action="/register" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">First Name:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="first_name" placeholder="Enter First Name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Last Name:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Email:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="email" placeholder="Enter Email Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Password:</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Confirm Password:</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="confirm" placeholder="Confirm Password Here">
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Register">
+      </form>
+
+      <h2>Login</h2>
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if "login" in message.tags %}
+            <li>{{message}}</li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <form class="form-horizontal" action="/login" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Email:</label>
+          <div class="col-sm-4">
+            <input type="email" class="form-control" name="email" placeholder="Enter Email Here">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Password:</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password Here">
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Login">
+      </form>
+    </div>
   </body>
 </html>
